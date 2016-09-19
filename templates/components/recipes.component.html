@@ -1,0 +1,9 @@
+<h2>Test</h2>
+<ul *ngFor="let recipe of recipes">
+	<li>
+		<span (click)="goToDetail(recipe);">{{recipe.name}}</span>
+		&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-default" type="button" (click)="goToDetail(recipe);">Edit</button>
+		<button class="btn btn-default" type="button" (click)="delete(recipe);">Delete</button>
+	</li>
+</ul>

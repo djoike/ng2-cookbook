@@ -1,0 +1,51 @@
+{
+	"recipes":[
+		{
+			"recipe_id" : 1,
+			"name": "Test",
+			"ingredients" : [
+				{
+					"ingredient_id": 1, // Gulerod
+					"unit_id": 10, // Gram
+					"amount": 200 // 200 gram selleri
+				}
+			]
+		}
+	]
+}
+
+{
+	"ingredient_data": [
+		{
+			"id": 1,
+			"name": "Gulerod",
+			"plural_name": "Gulerødder"
+		}
+	] 
+}
+
+{
+	"unit_data": [
+		{
+			"id": 1,
+			"name": "",
+			"short": "",
+			"triggers_plural": 2 // 0 = never, 1 = always, 2 = when amount <> 1,
+			"isHeadline": false
+		},
+		{
+			"id": 10,
+			"name": "Gram",
+			"short": "Gr",
+			"triggers_plural": 0 // 0 = never, 1 = always, 2 = when amount <> 1,
+			"isHeadline": false
+		},
+		{
+			"id": 2,
+			"name": "Splitter",
+			"short": "",
+			"triggers_plural": 0 // 0 = never, 1 = always, 2 = when amount <> 1,
+			"isHeadline": true
+		}
+	]
+}

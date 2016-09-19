@@ -1,0 +1,9 @@
+<h2>Units</h2>
+<ul *ngFor="let unit of units">
+	<li>
+		<span (click)="goToDetail(unit);">{{unit.name}}</span>
+		&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-default" type="button" (click)="goToDetail(unit);">Edit</button>
+		<button class="btn btn-default" type="button" (click)="delete(unit);">Delete</button>
+	</li>
+</ul>

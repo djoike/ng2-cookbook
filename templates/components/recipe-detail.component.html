@@ -1,0 +1,16 @@
+<div *ngIf="!recipe">
+	Loading...
+</div>
+<div *ngIf="recipe">
+	<div class="form-group form-group-lg">
+		<label class="control-label" for="recipe_name">Large label</label>
+		<div class="input-group col-sm-12">
+		  <input type="text" class="form-control" id="recipe_name" [(ngModel)]="recipe.name" />
+		</div>
+	</div>
+	<ul *ngFor="let ingredient of recipe.ingredients">
+		<li>{{ingredient.name}}</li>
+	</ul>
+	<button class="btn btn-default" type="button" (click)="save()">Save</button>
+	<button class="btn btn-default" type="button" (click)="goBack()">Back</button>
+</div>
