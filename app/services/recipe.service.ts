@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { API_BASE_URL } from './api-url';
+import { API_BASE_URL } from './api-url'; //This file is not in version control, contains a simple CONST string
 
 
 import 'rxjs/add/operator/toPromise';
