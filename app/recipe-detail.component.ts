@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { Ingredient } from './object-classes/ingredient';
 import { Recipe } from './object-classes/recipe';
@@ -14,7 +14,8 @@ export class RecipeDetailComponent implements OnInit {
 
 	constructor(
 		private recipeService: RecipeService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private router: Router
 	){}
 
 	ngOnInit(): void
@@ -27,11 +28,11 @@ export class RecipeDetailComponent implements OnInit {
 	}
 	goBack(): void
 	{
-		window.history.back();
+		this.router.navigate(['/recipes']);
 	}
 
 	save(): void
 	{
-		this.recipeService.updateRecipe(this.recipe).then(this.goBack);
+		this.recipeService.updateRecipe(this.recipe).then(()=>this.goBack());
 	}
 }

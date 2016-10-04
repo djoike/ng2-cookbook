@@ -30,6 +30,11 @@ export class UnitsComponent implements OnInit {
 		this.router.navigate(['/units',unit.id]);
 	}
 
+	newUnit():void
+	{
+		this.router.navigate(['/units/new/']);
+	}
+
 	delete(unit: Unit): void
 	{
 		if(confirm("Are you sure you want to delete this unit?"))

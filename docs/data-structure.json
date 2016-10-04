@@ -31,21 +31,21 @@
 			"name": "",
 			"short": "",
 			"triggers_plural": 2 // 0 = never, 1 = always, 2 = when amount <> 1,
-			"isHeadline": false
+			"is_headline": false
 		},
 		{
 			"id": 10,
 			"name": "Gram",
 			"short": "Gr",
 			"triggers_plural": 0 // 0 = never, 1 = always, 2 = when amount <> 1,
-			"isHeadline": false
+			"is_headline": false
 		},
 		{
 			"id": 2,
 			"name": "Splitter",
 			"short": "",
 			"triggers_plural": 0 // 0 = never, 1 = always, 2 = when amount <> 1,
-			"isHeadline": true
+			"is_headline": true
 		}
 	]
 }

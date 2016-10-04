@@ -29,15 +29,36 @@ export class UnitService
 		.catch(this.handleError);
 	}
 
+	getNewUnit(): Promise<Unit>
+	{
+		return new Promise<Unit>((resolve, reject) => {
+			var unit = new Unit;
+			unit.id = null;
+			unit.name = "";
+			unit.short = "";
+			unit.triggers_plural = 0;
+			unit.is_headline = false;
+
+			resolve(unit);
+		});
+	}
+
 	updateUnit(unit: Unit): Promise<Unit>
 	{
 		var objToReturn = {unit_data: [unit]}; 				// Webservice expects an array of units
 
-		console.log(objToReturn.unit_data[0].id === 2); 	// Yields false when ID is 2
-		console.log(objToReturn); 							// Log to verify it is 2 when testing
-		
 		// Code for actual request
 		return this.http.put(`${this.unitUrl}/${unit.id}`, JSON.stringify(objToReturn),{headers:this.headers})
+		.toPromise()
+		.then(()=> unit)
+		.catch(this.handleError);
+	}
+
+	createUnit(unit: Unit): Promise<Unit>
+	{
+		var objToReturn = {unit_data: [unit]}; 				// Webservice expects an array of units
+		// Code for actual request
+		return this.http.post(`${this.unitUrl}`, JSON.stringify(objToReturn),{headers:this.headers})
 		.toPromise()
 		.then(()=> unit)
 		.catch(this.handleError);

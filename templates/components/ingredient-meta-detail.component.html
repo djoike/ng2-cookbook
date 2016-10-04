@@ -1,0 +1,19 @@
+<div *ngIf="!meta">
+	Loading...
+</div>
+<div *ngIf="meta">
+	<h2>Edit ingredient-meta</h2>
+	<div class="form-group form-group-lg">
+		<label class="control-label" for="meta_name">Name</label>
+		<div class="input-group col-xs-12">
+		  <input type="text" class="form-control" id="meta_name" [(ngModel)]="meta.name" />
+		</div>
+		<br />
+		<label class="control-label" for="meta_plural_name">Plural name</label>
+		<div class="input-group col-xs-12">
+		  <input type="text" class="form-control" id="meta_plural_name" [(ngModel)]="meta.plural_name" />
+		</div>
+	</div>
+	<button class="btn btn-primary" type="button" (click)="save()">Save</button>
+	<button class="btn btn-link" type="button" (click)="goBack()">Back to list</button>
+</div>

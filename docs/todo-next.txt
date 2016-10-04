@@ -1,0 +1,3 @@
+Last thing: Completed ingredient-meta implementation in front and backend.
+
+Next step: In-application cache of unit-data and ingredient-metas. So it won't take forever to render a recipe because it has to do round-trips to the DB for data.
