@@ -11,22 +11,38 @@ export class IngredientMetaService
 {
 	private ingredientMetasUrl = API_BASE_URL + '/ingredient-metas';
 	private headers = new Headers({'Content-Type': 'application/json'});
+	private _metas;
 
 	constructor(private http: Http){}
 
 	getMetas(): Promise<IngredientMeta[]> {
+		if(this._metas)
+		{
+			return new Promise<IngredientMeta[]>((resolve, reject) => {
+						resolve(this._metas);
+			});
+		}
+		else
+		{
+			return this.refreshMetas();
+		}
+		
+	}
+
+	refreshMetas(): Promise<IngredientMeta[]> {
 		return this.http.get(this.ingredientMetasUrl)
 		.toPromise()
-		.then(response=> response.json().ingredient_metas as IngredientMeta[])
+		.then((response)=> {
+			let metas = response.json().ingredient_metas as IngredientMeta[];
+			this._metas = metas;
+			return metas;
+		})
 		.catch(this.handleError);
 	}
 
 	getMeta(id: number): Promise<IngredientMeta>
 	{
-		return this.http.get(`${this.ingredientMetasUrl}/${id}`)
-		.toPromise()
-		.then(response=> response.json().ingredient_metas[0] as IngredientMeta)
-		.catch(this.handleError);
+		return this.getMetas().then(metas => metas.filter(meta=>meta.id==id)[0]);
 	}
 
 	getNewMeta(): Promise<IngredientMeta>
@@ -58,6 +74,7 @@ export class IngredientMetaService
 		// Code for actual request
 		return this.http.post(`${this.ingredientMetasUrl}`, JSON.stringify(objToReturn),{headers:this.headers})
 		.toPromise()
+		.then(()=> this._metas.push(meta))
 		.then(()=> meta)
 		.catch(this.handleError);
 	}
@@ -66,7 +83,7 @@ export class IngredientMetaService
 	{
 		return this.http.delete(`${this.ingredientMetasUrl}/${id}`,{headers:this.headers})
 		.toPromise()
-		.then(()=> null)
+		.then(()=> this._metas = this._metas.filter(m=>m.id!=id))
 		.catch(this.handleError);
 	}
 
