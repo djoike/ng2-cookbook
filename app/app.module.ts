@@ -5,7 +5,7 @@ import { HttpModule }    from '@angular/http';
 
 import './rxjs-extensions';
 
-import { routing }              from './app.routing';
+import { routing } from './app.routing';
 
 
 // App components
@@ -14,10 +14,13 @@ import { RecipesComponent } from './recipes.component';
 import { RecipeDetailComponent } from './recipe-detail.component';
 import { UnitsComponent } from './units.component';
 import { UnitDetailComponent } from './unit-detail.component';
+import { IngredientMetasComponent } from './ingredient-metas.component';
+import { IngredientMetaDetailComponent } from './ingredient-meta-detail.component';
 
 //Services
 import { RecipeService } from './services/recipe.service';
 import { UnitService } from './services/unit.service';
+import { IngredientMetaService } from './services/ingredient-meta.service';
 
 @NgModule({
   imports: [
@@ -31,11 +34,14 @@ import { UnitService } from './services/unit.service';
     RecipesComponent,
     RecipeDetailComponent,
     UnitsComponent,
-    UnitDetailComponent
+    UnitDetailComponent,
+    IngredientMetasComponent,
+    IngredientMetaDetailComponent
   ],
   providers: [
     RecipeService,
-    UnitService
+    UnitService,
+    IngredientMetaService
   ],
   bootstrap: [ CookBookComponent ]
 })

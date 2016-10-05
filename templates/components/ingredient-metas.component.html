@@ -1,0 +1,11 @@
+<h2>Ingredient metas</h2>
+<ul *ngFor="let meta of metas">
+	<li>
+		<span (click)="goToDetail(meta);">{{meta.name}}</span>
+		&nbsp;&nbsp;&nbsp;
+		<button class="btn btn-default" type="button" (click)="goToDetail(meta);">Edit</button>
+		<button class="btn btn-default" type="button" (click)="delete(meta);">Delete</button>
+	</li>
+</ul>
+<br />
+<button class="btn btn-primary" type="button" (click)="newMeta()">Create new ingredients-meta</button>
