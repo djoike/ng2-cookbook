@@ -14,3 +14,7 @@
 	<button class="btn btn-default" type="button" (click)="save()">Save</button>
 	<button class="btn btn-default" type="button" (click)="goBack()">Back</button>
 </div>
+<div *ngIf="recipe">
+	<h1>{{recipe.name}}</h1>
+	<ingredients [recipeId]="recipe.id"></ingredients>
+</div>

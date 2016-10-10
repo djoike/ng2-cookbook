@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 
-import { Ingredient } from './object-classes/ingredient';
 import { Recipe } from './object-classes/recipe';
 import { RecipeService } from './services/recipe.service';
 

@@ -1,3 +1,10 @@
-Last thing: Completed ingredient-meta implementation in front and backend.
+Last thing: Made a new component for ingredients list. Made a service for it, as well as backend functions. Tested it so far.
+It still lacks any save/delete/update features.
 
-Next step: In-application cache of unit-data and ingredient-metas. So it won't take forever to render a recipe because it has to do round-trips to the DB for data.
+Next step: Now that I can render the ingredients as a list, we need to make those unit_id and ingredient_meta_ids translate into the actual information we want. The tricky part here is that we don't want the same component template as in the main unit component (for example).
+What I thought of so far about this:
+Either A: make a new component entirely, which relies on the same service or B: see if it's possible to use the same component with a different template.
+
+After getting that to work the next step is to be able to make a recipe with ingredients on it :) Right now you can't even create a new recipe without ingredients :D
+
+Long run: Consider if recipes and ingredients should get cached as is units and ingredient-metas.

@@ -16,11 +16,13 @@ import { UnitsComponent } from './units.component';
 import { UnitDetailComponent } from './unit-detail.component';
 import { IngredientMetasComponent } from './ingredient-metas.component';
 import { IngredientMetaDetailComponent } from './ingredient-meta-detail.component';
+import { IngredientsComponent } from './ingredients.component';
 
 //Services
 import { RecipeService } from './services/recipe.service';
 import { UnitService } from './services/unit.service';
 import { IngredientMetaService } from './services/ingredient-meta.service';
+import { IngredientService } from './services/ingredient.service';
 
 @NgModule({
   imports: [
@@ -36,12 +38,14 @@ import { IngredientMetaService } from './services/ingredient-meta.service';
     UnitsComponent,
     UnitDetailComponent,
     IngredientMetasComponent,
-    IngredientMetaDetailComponent
+    IngredientMetaDetailComponent,
+    IngredientsComponent
   ],
   providers: [
     RecipeService,
     UnitService,
-    IngredientMetaService
+    IngredientMetaService,
+    IngredientService
   ],
   bootstrap: [ CookBookComponent ]
 })
