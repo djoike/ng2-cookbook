@@ -18,9 +18,7 @@ export class UnitService
 	getUnits(): Promise<Unit[]> {
 		if(this._units)
 		{
-			return new Promise<Unit[]>((resolve, reject) => {
-						resolve(this._units);
-			});
+			return Promise.resolve(this._units);
 		}
 		else
 		{
@@ -45,17 +43,15 @@ export class UnitService
 	}
 
 	getNewUnit(): Promise<Unit>
-	{
-		return new Promise<Unit>((resolve, reject) => {
-			var unit = new Unit;
-			unit.id = null;
-			unit.name = "";
-			unit.short = "";
-			unit.triggers_plural = 0;
-			unit.is_headline = false;
+	{	
+		var unit = new Unit;
+		unit.id = null;
+		unit.name = "";
+		unit.short = "";
+		unit.triggers_plural = 0;
+		unit.is_headline = false;
 
-			resolve(unit);
-		});
+		return Promise.resolve(unit);	
 	}
 
 	updateUnit(unit: Unit): Promise<Unit>

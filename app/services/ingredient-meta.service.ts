@@ -18,9 +18,7 @@ export class IngredientMetaService
 	getMetas(): Promise<IngredientMeta[]> {
 		if(this._metas)
 		{
-			return new Promise<IngredientMeta[]>((resolve, reject) => {
-						resolve(this._metas);
-			});
+			return Promise.resolve(this._metas);	
 		}
 		else
 		{
@@ -47,14 +45,12 @@ export class IngredientMetaService
 
 	getNewMeta(): Promise<IngredientMeta>
 	{
-		return new Promise<IngredientMeta>((resolve, reject) => {
-			var meta = new IngredientMeta;
-			meta.id = null;
-			meta.name = "";
-			meta.plural_name = "";
+		var meta = new IngredientMeta;
+		meta.id = null;
+		meta.name = "";
+		meta.plural_name = "";
 
-			resolve(meta);
-		});
+		return Promise.resolve(meta);	
 	}
 
 	updateMeta(meta: IngredientMeta): Promise<IngredientMeta>

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Ingredient } from './object-classes/ingredient';
+import { Ingredient, IngredientShow } from './object-classes/ingredient';
 import { IngredientService } from './services/ingredient.service';
 
 @Component({
@@ -23,11 +23,13 @@ export class IngredientsComponent implements OnInit {
 	{
 		
 		this.ingredientService.getIngredients(this.recipeId)
-		.then(ingredients => this.ingredients = ingredients);
+		.then(ingredients => this.ingredients = ingredients)
+		.then(() => this.populateIngredients());
 	}
 
-	//save(): void
-	//{
-	//	this.recipeService.updateRecipe(this.recipe).then(()=>this.goBack());
-	//}
+	populateIngredients(): void
+	{
+		this.ingredientService.populateIngredients(this.ingredients)
+		.then(ingredients => this.ingredients = ingredients):
+	}
 }

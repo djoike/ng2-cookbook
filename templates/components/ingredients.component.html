@@ -1,10 +1,39 @@
-<h2>Ingredients</h2>
+<h4>Ingredients</h4>
 <ul *ngFor="let ingredient of ingredients">
 	<li>
-		<div>ID: {{ingredient.id}}</div>
-		<div>Recipe ID: {{ingredient.recipe_id}}</div>
-		<div>Ingredient meta ID: {{ingredient.ingredient_meta_id}}</div>
-		<div>Unit ID: {{ingredient.unit_id}}</div>
-		<div>Amount: {{ingredient.amount}}</div>
+		<div>
+			{{ingredient.ingredient_show.ingredient_meta?.name}} -
+			{{ingredient.amount}} {{ingredient.ingredient_show.unit?.short}}
+		</div>
 	</li>
 </ul>
+<!--div>
+	<h5>Add ingredient</h5>
+	<div class="form-group form-group-lg">
+		<label class="control-label" for="unit_name">Name</label>
+		<div class="input-group col-xs-12">
+		  <input type="text" class="form-control" id="unit_name" [(ngModel)]="unit.name" />
+		</div>
+		<br />
+		<label class="control-label" for="unit_short">Short</label>
+		<div class="input-group col-xs-12">
+		  <input type="text" class="form-control" id="unit_short" [(ngModel)]="unit.short" />
+		</div>
+		<br />
+		<label class="control-label" for="unit_plural">Trigger plural?</label>
+		<div class="input-group col-xs-12">
+		  <select class="form-control" id="unit_plural" [ngModel]="unit.triggers_plural" (ngModelChange)="pluralChange($event)">
+		  	<option value=0>0 = never (1 gram gulerod, 10 gram gulerod)</option>
+		  	<option value=1>1 = always (no example yet)</option>
+		  	<option value=2>2 = when amount <> 1 (0,5 stk gulerødder, 1 stk gulerod, 10 stk gulerødder)</option>
+		  </select>
+		</div>
+		<br />
+		<div class="input-group">
+		  <input type="checkbox" class="" id="unit_headline" [(ngModel)]="unit.is_headline" />&nbsp;
+		  <label class="control-label" for="unit_headline">Is headline</label>
+		</div>
+	</div>
+	<button class="btn btn-primary" type="button" (click)="save()">Save</button>
+	<button class="btn btn-link" type="button" (click)="goBack()">Back to Units</button>
+</div-->

@@ -4,7 +4,14 @@ import { API_BASE_URL } from './api-url'; //This file is not in version control,
 
 import 'rxjs/add/operator/toPromise';
 
-import { Ingredient } from '../object-classes/ingredient';
+import { Unit } from '../object-classes/unit';
+import { UnitService } from './unit.service';
+
+import { IngredientMeta } from '../object-classes/ingredient-meta';
+import { IngredientMetaService } from './ingredient-meta.service';
+
+import { Ingredient, IngredientShow } from '../object-classes/ingredient';
+
 
 @Injectable()
 export class IngredientService
@@ -12,7 +19,11 @@ export class IngredientService
 	private ingredientsUrl = API_BASE_URL + '/ingredients';
 	private headers = new Headers({'Content-Type': 'application/json'});
 
-	constructor(private http: Http){}
+	constructor(
+		private http: Http,
+		private unitService: UnitService,
+		private ingredientMetaService: IngredientMetaService
+	){}
 
 	getIngredients(recipeId: number): Promise<Ingredient[]> {
 		return this.http.get(this.ingredientsUrl+"?recipeid="+recipeId)
@@ -20,6 +31,31 @@ export class IngredientService
 		.then(response=> response.json().ingredients as Ingredient[])
 		.catch(this.handleError);
 	}
+
+	populateIngredients(ingredients: Ingredient[]): Promise<Ingredient[]> {
+
+		for (let ingredient of ingredients)
+		{
+			ingredient.ingredient_show = new IngredientShow;
+
+			this.populateUnitData(ingredient).then(unit => ingredient.ingredient_show.unit = unit);
+			this.populateIngredientMetaData(ingredient).then(meta => ingredient.ingredient_show.ingredient_meta = meta);
+		}
+		
+		return Promise.resolve(ingredients);
+		
+	}
+
+	populateUnitData(ingredient: Ingredient): Promise<Unit> {
+		var unit_id = ingredient.unit_id;
+		return this.unitService.getUnit(unit_id).then(unit => unit as Unit);
+	}
+
+	populateIngredientMetaData(ingredient: Ingredient): Promise<IngredientMeta> {
+		var meta_id = ingredient.ingredient_meta_id;
+		return this.ingredientMetaService.getMeta(meta_id).then(meta => meta as IngredientMeta);
+	}
+
 	/*
 	getNewMeta(): Promise<Ingredient>
 	{
