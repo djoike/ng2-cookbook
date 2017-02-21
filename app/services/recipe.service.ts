@@ -31,6 +31,15 @@ export class RecipeService
 		.catch(this.handleError);
 	}
 
+	getNewRecipe(): Promise<Recipe>
+	{
+		var recipe = new Recipe;
+		recipe.id = null;
+		recipe.name = "";
+
+		return Promise.resolve(recipe);	
+	}
+
 	updateRecipe(recipe: Recipe): Promise<Recipe>
 	{
 		var objToReturn = {recipes: [recipe]};
@@ -38,6 +47,19 @@ export class RecipeService
 		return this.http.put(`${this.recipesUrl}/${recipe.id}`, JSON.stringify(objToReturn),{headers:this.headers})
 		.toPromise()
 		.then(()=> recipe)
+		.catch(this.handleError);
+	}
+
+	createRecipe(recipe: Recipe): Promise<Recipe>
+	{
+		var objToReturn = {recipes: [recipe]};
+		
+		return this.http.post(`${this.recipesUrl}`, JSON.stringify(objToReturn),{headers:this.headers})
+		.toPromise()
+		.then((response)=> {
+			recipe.id = response.json().id; 
+			return recipe;
+		})
 		.catch(this.handleError);
 	}
 	

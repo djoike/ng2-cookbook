@@ -4,6 +4,9 @@ The next step is to be able to make a recipe with ingredients on it :) Right now
 Perhaps step 1 is to create ingredients on an existing recipe and go from there.
 I'm thinking that the ingredient_meta and unit data should be shown as search-as-you-type style input fields. How to do that with Typescript is a challenge, but maybe something like... Writing it out to some HTML element or attribute and having other script handle it? But shouldn't that "other script" also get handled as Typescript? :S Will be much fun...
 
+** UPDATE **
+So I figured out how to work with a typeahead and it's working OK for now. Want to make it possible to add ingredient-meta's and units straight on the recipe... So I'm currently working to do that. Tried re-using the ingredient-meta-detail component but it seems to require too many contortions simply to make it work, especially if I don't want the ingredient list component to have ingredient-meta and unit objects used for creating new entities. But, on the other hand, we want the entities available straight after saving, so it might make it easier... But it's not very "single responsibility" compatible... Argh!
+
 Long run:
 Consider if recipes and ingredients should get cached as is units and ingredient-metas.
 Security.

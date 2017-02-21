@@ -32,6 +32,30 @@ export class IngredientService
 		.catch(this.handleError);
 	}
 
+	createIngredient(ingredient:Ingredient): Promise<Ingredient> {
+		var ingredientToCreate = new Ingredient;
+		ingredientToCreate.amount = +ingredient.amount;
+		ingredientToCreate.ingredient_meta_id = ingredient.ingredient_meta_id;
+		ingredientToCreate.unit_id = ingredient.unit_id;
+		ingredientToCreate.recipe_id = ingredient.recipe_id;
+
+		var objToReturn = {ingredients: [ingredientToCreate]};
+		return this.http.post(`${this.ingredientsUrl}`, JSON.stringify(objToReturn),{headers:this.headers})
+		.toPromise()
+		.then((response) => {
+			ingredient.id = response.json().id;
+			return ingredient;
+		})
+		.catch(this.handleError);
+	}
+
+	deleteIngredient(id: number): Promise<any>
+	{
+		return this.http.delete(`${this.ingredientsUrl}/${id}`,{headers:this.headers})
+		.toPromise()
+		.catch(this.handleError);
+	}
+
 	populateIngredients(ingredients: Ingredient[]): Promise<Ingredient[]> {
 
 		for (let ingredient of ingredients)

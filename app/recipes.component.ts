@@ -25,6 +25,12 @@ export class RecipesComponent implements OnInit {
 	{
 		this.recipeService.getRecipes().then(recipes => this.recipes = recipes);
 	}
+
+	newRecipe():void
+	{
+		this.router.navigate(['/recipes/new/']);
+	}
+
 	goToDetail(recipe: Recipe): void
 	{
 		this.router.navigate(['/recipes',recipe.id]);

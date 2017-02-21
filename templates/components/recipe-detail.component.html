@@ -16,5 +16,5 @@
 </div>
 <div *ngIf="recipe">
 	<h1>{{recipe.name}}</h1>
-	<ingredients [recipeId]="recipe.id"></ingredients>
+	<ingredients [recipeId]="recipe.id" *ngIf="recipe.id"></ingredients>
 </div>

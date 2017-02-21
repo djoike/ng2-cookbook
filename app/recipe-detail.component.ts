@@ -10,6 +10,7 @@ import { RecipeService } from './services/recipe.service';
 })
 export class RecipeDetailComponent implements OnInit {
 	recipe: Recipe;
+	isNewRecipe: boolean = false;
 
 	constructor(
 		private recipeService: RecipeService,
@@ -21,8 +22,19 @@ export class RecipeDetailComponent implements OnInit {
 	{
 		this.route.params.forEach((params: Params) => {
 			let id = +params['id'];
-			this.recipeService.getRecipe(id)
-			.then(recipe => this.recipe = recipe);
+			if(id)
+			{
+				console.log("a");
+				this.recipeService.getRecipe(id)
+				.then(recipe => this.recipe = recipe);
+			}
+			else
+			{
+				console.log("b");
+				this.isNewRecipe = true;
+				this.recipeService.getNewRecipe()
+				.then(recipe => this.recipe = recipe);
+			}
 		});
 	}
 	goBack(): void
@@ -32,6 +44,17 @@ export class RecipeDetailComponent implements OnInit {
 
 	save(): void
 	{
-		this.recipeService.updateRecipe(this.recipe).then(()=>this.goBack());
+		if(this.isNewRecipe)
+		{
+			this.recipeService.createRecipe(this.recipe).then((recipe) => {
+				this.recipe = recipe;
+				this.isNewRecipe = false;
+			});	
+		}
+		else
+		{
+			this.recipeService.updateRecipe(this.recipe).then(()=>this.goBack());	
+		}
+		
 	}
 }

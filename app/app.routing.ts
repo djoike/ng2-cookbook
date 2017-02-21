@@ -23,6 +23,10 @@ const appRoutes: Routes = [
 		component: RecipeDetailComponent
 	},
 	{
+		path: 'recipes/new',
+		component: RecipeDetailComponent
+	},
+	{
 		path: 'units',
 		component: UnitsComponent
 	},
