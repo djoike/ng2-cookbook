@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { API_BASE_URL } from './api-url'; //This file is not in version control, contains a simple CONST string
+import { API_BASE_URL, API_KEY } from './api-url'; //This file is not in version control, contains a simple CONST string
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,7 +10,7 @@ import { IngredientMeta } from '../object-classes/ingredient-meta';
 export class IngredientMetaService
 {
 	private ingredientMetasUrl = API_BASE_URL + '/ingredient-metas';
-	private headers = new Headers({'Content-Type': 'application/json'});
+	private headers = new Headers({'Content-Type': 'application/json','Custom-Auth-String':API_KEY});
 	private _metas;
 
 	constructor(private http: Http){}

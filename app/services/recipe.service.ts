@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { API_BASE_URL } from './api-url'; //This file is not in version control, contains a simple CONST string
+import { API_BASE_URL, API_KEY } from './api-url'; //This file is not in version control, contains a simple CONST string
 
 
 import 'rxjs/add/operator/toPromise';
@@ -12,7 +12,7 @@ export class RecipeService
 {
 	private recipesUrl = API_BASE_URL + '/recipes';
 	//private recipesUrl = 'http://obscure-lowlands-14758.herokuapp.com/recipes';
-	private headers = new Headers({'Content-Type': 'application/json'});
+	private headers = new Headers({'Content-Type': 'application/json','Custom-Auth-String':API_KEY});
 
 	constructor(private http: Http){}
 

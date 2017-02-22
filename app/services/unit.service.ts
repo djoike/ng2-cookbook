@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import { API_BASE_URL } from './api-url'; //This file is not in version control, contains a simple CONST string
+import { API_BASE_URL, API_KEY } from './api-url'; //This file is not in version control, contains a simple CONST string
 
 import 'rxjs/add/operator/toPromise';
 
@@ -10,7 +10,7 @@ import { Unit } from '../object-classes/unit';
 export class UnitService
 {
 	private unitUrl = API_BASE_URL + '/unit-data';
-	private headers = new Headers({'Content-Type': 'application/json'});
+	private headers = new Headers({'Content-Type': 'application/json','Custom-Auth-String':API_KEY});
 	private _units;
 
 	constructor(private http: Http){}
